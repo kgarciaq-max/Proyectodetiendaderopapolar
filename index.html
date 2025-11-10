@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tienda de Ropa</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<!-- LOGIN -->
+<section id="login" class="login-bg">
+    <div class="login-card">
+        <h2>Bienvenid@</h2>
+        <p class="subtitle">Inicia sesión para acceder a la tienda</p>
+
+        <label>Usuario</label>
+        <input type="text" id="usuario" placeholder="Ingresa tu usuario">
+
+        <label style="margin-top:10px;">Contraseña</label>
+        <input type="password" id="contrasena" placeholder="••••••••">
+
+        <button onclick="login()" class="login-btn">Entrar</button>
+
+        <p class="mini-note">Usuario: <b>alumno</b> | Contraseña: <b>2025</b></p>
+    </div>
+</section>
+
+<!-- MENÚ -->
+<nav id="menu" class="hidden">
+    <button onclick="showTab('productos')">Productos</button>
+    <button onclick="showTab('carrito')">Carrito</button>
+    <button onclick="showTab('perfil')">Perfil</button>
+    <button onclick="logout()">Salir</button>
+</nav>
+
+<!-- PRODUCTOS -->
+<section id="productos" class="hidden tab">
+    <h2 style="text-align:center;">🛍️ Catálogo de Ropa</h2>
+
+    <div class="productos-container" id="productos-container"></div>
+</section>
+
+<!-- CARRITO -->
+<section id="carrito" class="hidden tab">
+    <h2>🛒 Carrito de Compras</h2>
+    <ul id="carrito-lista"></ul>
+    <h3>Total: Q<span id="carrito-total">0</span></h3>
+    <button onclick="comprar()">Finalizar Compra</button>
+</section>
+
+<!-- PERFIL -->
+<section id="perfil" class="hidden tab perfil">
+    <h2>👤 Perfil del Usuario</h2>
+
+    <div class="perfil-card">
+        <h3>Preferencias</h3>
+
+        <label>Selecciona tu estilo favorito:</label>
+        <select id="estilo">
+            <option value="casual">Casual</option>
+            <option value="formal">Formal</option>
+            <option value="deportivo">Deportivo</option>
+            <option value="urbano">Urbano</option>
+        </select>
+
+        <p><b>¿Qué tipo de ropa prefieres?</b></p>
+        <label><input type="radio" name="tipo" value="hombre"> Ropa de Hombre</label><br>
+        <label><input type="radio" name="tipo" value="mujer"> Ropa de Mujer</label><br>
+        <label><input type="radio" name="tipo" value="unisex"> Unisex</label>
+
+        <p><b>¿Deseas recibir ofertas por correo?</b></p>
+        <label><input type="checkbox" id="ofertas"> Sí, deseo recibir ofertas</label>
+
+        <button onclick="guardarPreferencias()">Guardar Preferencias</button>
+    </div>
+
+    <h3 style="margin-top:30px;">🎥 Videos sobre moda y ropa</h3>
+    <ul class="videos-lista">
+        <li><a href="https://www.youtube.com/watch?v=i2fTiXiwtRk" target="_blank">Tendencias de moda 2025</a></li>
+        <li><a href="https://www.youtube.com/watch?v=M2nYiKXPxd0" target="_blank">Guía para combinar ropa</a></li>
+        <li><a href="https://www.youtube.com/watch?v=aDTNzub2c8Y" target="_blank">Casual vs Formal</a></li>
+        <li><a href="https://www.youtube.com/watch?v=aP6NP8IMeh4" target="_blank">Moda masculina moderna</a></li>
+    </ul>
+</section>
+
+<script>
+// Lista de productos
+const productos = [
+    { nombre:"Camisa Casual", precio:150, img:"camisacasual.jpg" },
+    { nombre:"Sudadera Oversize", precio:230, img:"imagen2.jpg" },
+    { nombre:"Jogger Unisex", precio:180, img:"imagen3.jpg" },
+    { nombre:"Manga Larga Premium", precio:120, img:"imagen4.jpg" },
+    { nombre:"Gorra Negra", precio:85, img:"imagen5.jpg" },
+    { nombre:"Jeans", precio:210, img:"imagen6.jpg" },
+    { nombre:"Mochila Casual", precio:190, img:"imagen7.jpg" },
+    { nombre:"Camisa Formal", precio:170, img:"imagen8.jpg" },
+    { nombre:"Short Deportivo", precio:95, img:"imagen9.jpg" },
+    { nombre:"Chaqueta Ligera", precio:260, img:"imagen10.jpg" },
+    { nombre:"Chaqueta de Cuero", precio:240, img:"imagen11.jpg" },
+    { nombre:"Gorra Blanca", precio:100, img:"imagen12.jpg" }
+];
+
+let carrito = [];
+
+// Cargar productos
+function cargarProductos(){
+    const cont = document.getElementById("productos-container");
+    cont.innerHTML = "";
+
+    productos.forEach((p, index) => {
+        cont.innerHTML += `
+            <div class="producto">
+                <img src="${p.img}">
+                <h3>${p.nombre}</h3>
+                <p>Q${p.precio}</p>
+                <button onclick="agregarCarrito(${index})">Añadir</button>
+            </div>`;
+    });
+}
+
+function agregarCarrito(i){
+    carrito.push(productos[i]);
+    actualizarCarrito();
+}
+
+function actualizarCarrito(){
+    const lista = document.getElementById("carrito-lista");
+    const totalHTML = document.getElementById("carrito-total");
+
+    lista.innerHTML = "";
+    let total = 0;
+
+    carrito.forEach((p, i) => {
+        lista.innerHTML += `<li>${p.nombre} - Q${p.precio} <button onclick="eliminar(${i})">X</button></li>`;
+        total += p.precio;
+    });
+
+    totalHTML.textContent = total;
+}
+
+function eliminar(i){
+    carrito.splice(i,1);
+    actualizarCarrito();
+}
+
+function comprar(){
+    if(carrito.length === 0){ 
+        alert("Tu carrito está vacío"); 
+        return; 
+    }
+    alert("✅ ¡Compra realizada con éxito!");
+    carrito = [];
+    actualizarCarrito();
+}
+
+function guardarPreferencias() {
+    const estilo = document.getElementById("estilo").value;
+    const ofertas = document.getElementById("ofertas").checked;
+    const tipo = document.querySelector('input[name="tipo"]:checked');
+
+    let mensaje = "✅ Preferencias guardadas:\n";
+    mensaje += "Estilo: " + estilo + "\n";
+    mensaje += "Tipo de ropa: " + (tipo ? tipo.value : "No seleccionado") + "\n";
+    mensaje += "Ofertas: " + (ofertas ? "Sí" : "No");
+
+    alert(mensaje);
+}
+
+function login() {
+    let user = document.getElementById("usuario").value;
+    let pass = document.getElementById("contrasena").value;
+
+    if(user === "alumno" && pass === "2025"){
+        document.getElementById("login").style.display = "none";
+        document.getElementById("menu").classList.remove("hidden");
+        document.getElementById("productos").classList.remove("hidden");
+        cargarProductos();
+    } else {
+        alert("Usuario o contraseña incorrectos");
+    }
+}
+
+function showTab(tab){
+    let tabs = document.querySelectorAll('.tab');
+    tabs.forEach(t => t.classList.add('hidden'));
+    document.getElementById(tab).classList.remove('hidden');
+}
+
+function logout(){ location.reload(); }
+</script>
+
+</body>
+</html>

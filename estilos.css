@@ -1,0 +1,294 @@
+/* ------------------ FUENTES & RESET ------------------ */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background:#f2f2f2;
+    overflow-x:hidden;
+}
+
+/* ------------------ LOGIN ------------------ */
+.login-bg{
+    width:100%;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg, #6a11cb, #2575fc);
+    animation: fadeIn 1.2s ease;
+}
+
+.login-card{
+    width:350px;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    text-align:center;
+    animation: slideUp 0.8s ease;
+}
+
+.login-card input{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    border:none;
+    border-radius:10px;
+    background:#eaeaea;
+}
+
+.login-btn{
+    width:100%;
+    margin-top:15px;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#2575fc;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+.login-btn:hover{
+    background:#0f5ae0;
+    transform:scale(1.03);
+}
+
+.subtitle{
+    color:#444;
+    font-size:14px;
+    margin-bottom:15px;
+}
+
+.mini-note{
+    margin-top:10px;
+    font-size:12px;
+    color:#555;
+}
+
+/* ------------------ MENÚ ------------------ */
+nav{
+    width:100%;
+    padding:15px;
+    background:#2575fc;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+nav button{
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    background:white;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.3s;
+}
+nav button:hover{
+    transform:scale(1.1);
+    background:#eaeaea;
+}
+
+/* ------------------ PRODUCTOS ------------------ */
+.productos-container{
+    width:90%;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+    gap:20px;
+    padding:20px 0;
+    animation: fadeIn 1s ease;
+}
+
+.producto{
+    background:white;
+    border-radius:20px;
+    padding:15px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:.3s;
+}
+
+.producto:hover{
+    transform:translateY(-5px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+.producto img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:15px;
+    margin-bottom:10px;
+}
+
+.producto button{
+    padding:10px 15px;
+    border:none;
+    border-radius:10px;
+    background:#6a11cb;
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+.producto button:hover{
+    background:#5310a8;
+    transform:scale(1.05);
+}
+
+/* ------------------ CARRITO ------------------ */
+#carrito{
+    width:90%;
+    margin:20px auto;
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.15);
+    animation: fadeIn 1s ease;
+}
+
+#carrito h2{
+    text-align:center;
+    color:#2575fc;
+    margin-bottom:15px;
+}
+
+#carrito-lista{
+    list-style:none;
+    margin-bottom:20px;
+    padding:0;
+}
+
+#carrito-lista li{
+    background:#f5f5f5;
+    padding:10px 15px;
+    border-radius:12px;
+    margin:8px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+#carrito-lista button{
+    background:#ff4b4b;
+    border:none;
+    color:white;
+    padding:6px 10px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.3s;
+}
+#carrito-lista button:hover{
+    background:#d93434;
+    transform:scale(1.08);
+}
+
+#carrito-total{
+    font-weight:bold;
+    font-size:20px;
+    color:#6a11cb;
+}
+
+#carrito button{
+    width:100%;
+    margin-top:15px;
+    padding:12px;
+    background:#2575fc;
+    color:white;
+    font-size:16px;
+    border:none;
+    border-radius:15px;
+    cursor:pointer;
+    transition:.3s;
+}
+#carrito button:hover{
+    background:#0f5ae0;
+    transform:scale(1.03);
+}
+
+/* ------------------ PERFIL ------------------ */
+.perfil {
+    width:90%;
+    margin:20px auto;
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.15);
+    animation: fadeIn 1s ease;
+}
+
+.perfil-card{
+    background:#f9f9f9;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 3px 12px rgba(0,0,0,0.1);
+}
+
+.perfil-card select{
+    width:100%;
+    padding:10px;
+    border-radius:10px;
+    border:none;
+    background:#eaeaea;
+    margin:8px 0 15px 0;
+}
+
+.perfil-card button{
+    width:100%;
+    padding:12px;
+    background:#6a11cb;
+    color:white;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+}
+
+.perfil-card button:hover{
+    background:#5310a8;
+    transform:scale(1.03);
+}
+
+.videos-lista{
+    margin-top:15px;
+    padding-left:20px;
+}
+
+.videos-lista li{
+    margin:8px 0;
+}
+
+.videos-lista a{
+    color:#2575fc;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.videos-lista a:hover{
+    text-decoration:underline;
+}
+
+/* ------------------ ANIMACIONES ------------------ */
+@keyframes fadeIn{
+    from{opacity:0}
+    to{opacity:1}
+}
+
+@keyframes slideUp{
+    from{transform:translateY(40px); opacity:0;}
+    to{transform:translateY(0); opacity:1;}
+}
+
+/* ------------------ UTILIDADES ------------------ */
+.hidden{ display:none; }
+.visible{ display:flex; }
