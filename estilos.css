@@ -292,3 +292,22 @@ nav button:hover{
 /* ------------------ UTILIDADES ------------------ */
 .hidden{ display:none; }
 .visible{ display:flex; }
+.hidden{ display:none; }
+.visible{ display:flex; }
+.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+.dark-mode .menu button,
+.dark-mode .menu a {
+    background-color: #333;
+    color: white;
+}
+
+.dark-mode .producto {
+    background-color: #222;
+    color: white;
+}
+
+
